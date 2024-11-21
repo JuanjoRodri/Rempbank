@@ -1,0 +1,73 @@
+1. Definición del alcance
+	El programa debe permitir:
+
+		Crear nuevos clientes (con datos como nombre, DNI, dirección, etc.).
+		Crear cuentas bancarias asociadas a clientes.
+		Realizar operaciones bancarias como depósitos, retiros y transferencias.
+		Consultar movimientos bancarios.
+		Generar informes de movimientos en formato descargable (como PDF o CSV).
+	2. Diseño del sistema
+		Clases principales:
+		Cliente
+	
+			Atributos: id, nombre, apellido, DNI, direccion, telefono.
+			Métodos:
+			Constructor.
+			Getters y setters.
+		CuentaBancaria
+	
+			Atributos: numeroCuenta, cliente, saldo, tipoCuenta (ahorros, corriente).
+			Métodos:
+			Depósito.
+			Retiro.
+			Transferencia.
+			Getters y setters.
+		Movimiento
+	
+			Atributos: id, numeroCuenta, tipoMovimiento (depósito, retiro, transferencia), monto, fecha.
+			Métodos:
+			Registrar movimiento.
+			Consultar historial de movimientos.
+		Banco
+
+			Atributos: Lista de clientes, lista de cuentas bancarias, lista de movimientos.
+			Métodos:
+			Registrar cliente.
+			Crear cuenta bancaria.
+			Listar clientes.
+			Buscar cliente por DNI.
+			Consultar cuentas de un cliente.
+	3. Persistencia
+		Usa MySQL como base de datos para almacenar los datos de clientes, cuentas y movimientos.
+
+		Tablas sugeridas:
+		clientes
+
+			id (PK), nombre, apellido, DNI, direccion, telefono.
+		cuentas_bancarias
+
+			numero_cuenta (PK), id_cliente (FK), saldo, tipo_cuenta.
+		movimientos
+
+			id (PK), numero_cuenta (FK), tipo_movimiento, monto, fecha.
+	
+	4. Descarga de informes
+		Para generar informes, utiliza una biblioteca como Apache POI (para CSV/Excel) o iText (para PDF).
+
+
+6. Flujo básico de operaciones
+	Inicio:
+
+		Mostrar menú principal con opciones: Crear cliente, Crear cuenta, Realizar operaciones, Consultar movimientos, Generar informe.
+	Gestión de clientes:
+
+		Solicitar datos del cliente y almacenarlos en la base de datos.
+	Gestión de cuentas:
+
+		Asociar cuenta a un cliente ya registrado y definir el tipo de cuenta.
+	Operaciones bancarias:
+
+		Realizar depósitos, retiros y transferencias, actualizando el saldo y registrando los movimientos.
+	Consultas e informes:
+
+		Mostrar movimientos bancarios por cuenta y exportarlos a un archivo descargable.
